@@ -9,4 +9,7 @@ public interface MenuItem extends Pricable {
     
     // Gets the category of the menu item (Sandwich, Drink, Chips, etc.)
     String getCategory();
+
+    // remove
 }
+
