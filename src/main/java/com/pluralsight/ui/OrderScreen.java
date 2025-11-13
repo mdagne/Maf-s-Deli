@@ -4,9 +4,7 @@ import com.pluralsight.models.Order;
 import com.pluralsight.services.OrderManager;
 import com.pluralsight.utils.MenuUtils;
 
-/**
- * OrderScreen extends UIScreen, demonstrating inheritance and polymorphism.
- */
+// OrderScreen extends UIScreen, demonstrating inheritance and polymorphism.
 public class OrderScreen extends UIScreen {
 
     private final OrderManager orderManager;

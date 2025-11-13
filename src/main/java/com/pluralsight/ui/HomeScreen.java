@@ -3,9 +3,7 @@ package com.pluralsight.ui;
 import com.pluralsight.services.OrderManager;
 import com.pluralsight.utils.MenuUtils;
 
-/**
- * HomeScreen extends UIScreen, demonstrating inheritance.
- */
+// HomeScreen extends UIScreen, demonstrating inheritance.
 public class HomeScreen extends UIScreen {
 
     private final OrderManager orderManager;
