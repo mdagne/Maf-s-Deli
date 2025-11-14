@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-// Represents free regular toppings (mayo, mustard, etc.) that don't add to the sandwich price.
+// Sauce extends abstract Topping class
 public class Sauce extends Topping {
     private static final List<String> AVAILABLE_SAUCES = Collections.unmodifiableList(Arrays.asList(
         "Mayo", "Mustard", "Ketchup", "Ranch", "Chipotle", "Vinaigrette"
@@ -19,10 +19,10 @@ public class Sauce extends Topping {
 
     @Override
     public BigDecimal getPriceBySize(SandwichSize size) {
-        // Sauces are included in the price
         return BigDecimal.ZERO;
     }
 
+    // Returns list of all available sauce options
     public static List<String> getAvailableSauces() {
         return AVAILABLE_SAUCES;
     }

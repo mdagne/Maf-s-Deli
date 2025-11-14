@@ -11,10 +11,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Stream;
 
-// Order aggregates sandwiches, drinks, and chips, calculates totals, and generates receipt text.
+// Order uses Pricable interface for different item types
 public class Order {
+    private static final int PRICE_DECIMAL_PLACES = 2;
+    private static final int RECEIPT_BUFFER_SIZE = 512;
+    private static final String RECEIPT_SEPARATOR = "--------------------------------";
+    private static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
+
     private static int idCounter = 1;
     private final int id = idCounter++;
     private final LocalDateTime placedAt = LocalDateTime.now();
@@ -49,17 +53,19 @@ public class Order {
         this.paymentMethod = paymentMethod;
     }
 
-    // Newest first: addFirst
-    public void addSandwich(Sandwich s) {
-        sandwiches.addFirst(s);
+    // Adds a sandwich to the order
+    public void addSandwich(Sandwich sandwich) {
+        sandwiches.addFirst(sandwich);
     }
 
-    public void addDrink(Drink d) {
-        drinks.addFirst(d);
+    // Adds a drink to the order
+    public void addDrink(Drink drink) {
+        drinks.addFirst(drink);
     }
 
-    public void addChips(Chips c) {
-        chips.addFirst(c);
+    // Adds chips to the order
+    public void addChips(Chips chips) {
+        this.chips.addFirst(chips);
     }
 
     public List<Sandwich> getSandwiches() {
@@ -74,69 +80,69 @@ public class Order {
         return Collections.unmodifiableList(chips);
     }
 
+    // Returns true if order has at least one item
     public boolean isValid() {
-        // If no sandwiches, require at least a drink or chips
-        if (sandwiches.isEmpty()) {
-            return !(drinks.isEmpty() && chips.isEmpty());
-        }
-        return true;
+        return !sandwiches.isEmpty() || !drinks.isEmpty() || !chips.isEmpty();
     }
 
+    // Calculates total price by summing all item prices
     public BigDecimal calculateSubtotal() {
-        BigDecimal total = Stream.concat(
-                Stream.concat(
-                    sandwiches.stream().map(Sandwich::getPrice),
-                    drinks.stream().map(Drink::getPrice)
-                ),
-                chips.stream().map(Chips::getPrice)
-            )
-            .reduce(BigDecimal.ZERO, BigDecimal::add);
-        
-        return total.setScale(2, java.math.RoundingMode.HALF_UP);
+        BigDecimal sandwichTotal = sandwiches.stream()
+                .map(Sandwich::getPrice)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        BigDecimal drinkTotal = drinks.stream()
+                .map(Drink::getPrice)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        BigDecimal chipsTotal = chips.stream()
+                .map(Chips::getPrice)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        return sandwichTotal.add(drinkTotal).add(chipsTotal)
+                .setScale(PRICE_DECIMAL_PLACES, java.math.RoundingMode.HALF_UP);
     }
 
+    // Builds formatted receipt text with all order details
     public String buildReceiptText() {
-        StringBuilder sb = new StringBuilder(512);
+        StringBuilder sb = new StringBuilder(RECEIPT_BUFFER_SIZE);
         sb.append("Maf's Deli Receipt\n");
         sb.append("Customer: ").append(customerName).append("\n");
         sb.append("Order ID: ").append(id).append("\n");
-        sb.append("Placed: ").append(placedAt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))).append("\n");
-        sb.append("--------------------------------\n");
+        sb.append("Placed: ").append(placedAt.format(DateTimeFormatter.ofPattern(DATE_TIME_PATTERN))).append("\n");
+        sb.append(RECEIPT_SEPARATOR).append("\n");
 
-        // Format sandwiches using streams
-        AtomicInteger idx = new AtomicInteger(1);
+        AtomicInteger sandwichNumber = new AtomicInteger(1);
         sandwiches.stream()
-                .forEach(s -> {
-                    sb.append("Sandwich ").append(idx.getAndIncrement()).append(":\n");
-                    sb.append(s.toReceiptText()).append("\n");
+                .forEach(sandwich -> {
+                    sb.append("Sandwich ").append(sandwichNumber.getAndIncrement()).append(":\n");
+                    sb.append(sandwich.toReceiptText()).append("\n");
                 });
 
-        // Format drinks using stream if not empty
         if (!drinks.isEmpty()) {
             sb.append("Drinks:\n");
             drinks.stream()
-                    .forEach(d -> sb.append("  - ").append(d.toReceiptText()).append("\n"));
+                    .forEach(drink -> sb.append("  - ").append(drink.toReceiptText()).append("\n"));
             sb.append("\n");
         }
 
-        // Format chips using stream if not empty
         if (!chips.isEmpty()) {
             sb.append("Chips:\n");
             chips.stream()
-                    .forEach(c -> sb.append("  - ").append(c.toReceiptText()).append("\n"));
+                    .forEach(chip -> sb.append("  - ").append(chip.toReceiptText()).append("\n"));
             sb.append("\n");
         }
 
         BigDecimal subtotal = calculateSubtotal();
-        sb.append("--------------------------------\n");
+        sb.append(RECEIPT_SEPARATOR).append("\n");
         sb.append("Total: $").append(subtotal.toPlainString()).append("\n");
         sb.append("Payment Method: ").append(paymentMethod.getDisplayName()).append("\n");
-        sb.append("--------------------------------\n");
+        sb.append(RECEIPT_SEPARATOR).append("\n");
         sb.append("Thank you for your order!\n");
         return sb.toString();
     }
 
-    // Save receipt using ReceiptService and return filename
+    // Saves receipt to file and returns the file path
     public String saveReceipt() throws IOException {
         String content = buildReceiptText();
         return ReceiptService.saveReceipt(placedAt, content);

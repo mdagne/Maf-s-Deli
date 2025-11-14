@@ -6,7 +6,9 @@ import com.pluralsight.enums.PaymentMethod;
 
 // CheckoutScreen displays order summary, collects payment method, confirms order, and saves receipt.
 public class CheckoutScreen {
-
+    private static final String INVALID_ORDER_MESSAGE = 
+            "Invalid order: If you have 0 sandwiches, you must add chips or a drink.";
+    
     private final OrderManager orderManager;
 
     public CheckoutScreen(OrderManager orderManager) {
@@ -18,7 +20,7 @@ public class CheckoutScreen {
         
         // Validate order
         if (!orderManager.canCheckout()) {
-            System.out.println("Invalid order: If you have 0 sandwiches, you must add chips or a drink.");
+            System.out.println(INVALID_ORDER_MESSAGE);
             return;
         }
         

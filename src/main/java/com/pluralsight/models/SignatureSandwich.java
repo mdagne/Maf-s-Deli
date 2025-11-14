@@ -7,7 +7,7 @@ import com.pluralsight.toppings.Cheese;
 import com.pluralsight.toppings.Vegetable;
 import com.pluralsight.toppings.Sauce;
 
-// Creates predefined sandwiches with default toppings.
+// SignatureSandwich extends Sandwich
 public class SignatureSandwich extends Sandwich {
     
     private final String signatureName;
@@ -16,9 +16,11 @@ public class SignatureSandwich extends Sandwich {
         super(size, bread);
         this.signatureName = signatureName;
     }
+    
     public String getSignatureName() {
         return signatureName;
     }
+    
     // Creates a BLT signature sandwich with default toppings
     public static SignatureSandwich createBLT() {
         SignatureSandwich blt = new SignatureSandwich("BLT", SandwichSize.EIGHT, BreadType.WHITE);
@@ -41,6 +43,7 @@ public class SignatureSandwich extends Sandwich {
         return philly;
     }
 
+    // Overrides parent method to add signature name to receipt
     @Override
     public String toReceiptText() {
         StringBuilder sb = new StringBuilder();

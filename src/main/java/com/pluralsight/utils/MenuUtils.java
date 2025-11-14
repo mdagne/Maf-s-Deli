@@ -2,21 +2,23 @@ package com.pluralsight.utils;
 
 import com.pluralsight.enums.BreadType;
 import com.pluralsight.enums.DrinkSize;
+import com.pluralsight.enums.PaymentMethod;
 import com.pluralsight.enums.SandwichSize;
 import com.pluralsight.toppings.Meat;
 import com.pluralsight.toppings.Cheese;
 import com.pluralsight.toppings.Vegetable;
 import com.pluralsight.toppings.Sauce;
 import com.pluralsight.sides.Drink;
-import com.pluralsight.sides.SauceSide;
+import com.pluralsight.sides.DippingSauce;
 
 import java.util.*;
 
-// MenuUtils provides static methods for reading user input and displaying menu choices for all order items.
+// Provides static methods for reading user input and displaying menu choices
 public class MenuUtils {
 
     private static final Scanner scanner = new Scanner(System.in);
 
+    // Reads and validates integer input from user
     public static int readInt(String prompt) {
         while (true) {
             try {
@@ -28,6 +30,7 @@ public class MenuUtils {
         }
     }
 
+    // Reads yes/no input from user and returns boolean
     public static boolean readYesNo(String prompt) {
         while (true) {
             System.out.print(prompt);
@@ -38,11 +41,13 @@ public class MenuUtils {
         }
     }
 
+    // Reads string input from user
     public static String readString(String prompt) {
         System.out.print(prompt);
         return scanner.nextLine().trim();
     }
 
+    // Prompts user to select sandwich size and returns selected size
     public static SandwichSize chooseSandwichSize() {
         System.out.println("\nSelect sandwich size:");
         System.out.println("1) 4\"");
@@ -59,6 +64,7 @@ public class MenuUtils {
         }
     }
 
+    // Prompts user to select bread type and returns selected type
     public static BreadType chooseBreadType() {
         System.out.println("\nSelect bread type:");
         System.out.println("1) White");
@@ -77,26 +83,32 @@ public class MenuUtils {
         }
     }
 
+    // Prompts user to select one or more meats and returns selected list
     public static List<String> chooseMeats() {
         return chooseMultipleOptions("meat", Meat.getAvailableMeats());
     }
 
+    // Prompts user to select one or more cheeses and returns selected list
     public static List<String> chooseCheeses() {
         return chooseMultipleOptions("cheese", Cheese.getAvailableCheeses());
     }
 
+    // Prompts user to select regular toppings and returns selected list
     public static List<String> chooseRegularToppings() {
         return chooseMultipleOptions("regular topping", Vegetable.getAvailableVegetables());
     }
 
+    // Prompts user to select sauces and returns selected list
     public static List<String> chooseSauces() {
         return chooseMultipleOptions("sauce", Sauce.getAvailableSauces());
     }
 
+    // Prompts user to select dipping sauces and returns selected list
     public static List<String> chooseSides() {
-        return chooseMultipleOptions("side", SauceSide.getAvailableSauceSides());
+        return chooseMultipleOptions("dipping sauce", DippingSauce.getAvailableDippingSauces());
     }
 
+    // Prompts user to select multiple options from a list with add/remove functionality
     private static List<String> chooseMultipleOptions(String itemType, List<String> options) {
         List<String> selected = new ArrayList<>();
         System.out.println("\nAvailable " + itemType + "s:");
@@ -132,6 +144,7 @@ public class MenuUtils {
         return selected;
     }
 
+    // Reads number of extra portions for a premium topping
     public static int readExtraCount(String itemName, String itemType) {
         while (true) {
             try {
@@ -148,6 +161,7 @@ public class MenuUtils {
         }
     }
 
+    // Prompts user to select drink size and returns selected size
     public static DrinkSize chooseDrinkSize() {
         System.out.println("\nSelect drink size:");
         System.out.println("1) Small");
@@ -164,6 +178,7 @@ public class MenuUtils {
         }
     }
 
+    // Prompts user to select a drink flavor and returns selected flavor or null
     public static String chooseDrink() {
         List<String> drinks = Drink.getAvailableDrinks();
         System.out.println("\nAvailable drinks:");
@@ -183,16 +198,16 @@ public class MenuUtils {
         }
     }
 
-
-    public static com.pluralsight.enums.PaymentMethod choosePaymentMethod() {
+    // Prompts user to select payment method and returns selected method
+    public static PaymentMethod choosePaymentMethod() {
         System.out.println("\nSelect payment method:");
         System.out.println("1) Cash");
         System.out.println("2) Card");
         while (true) {
             int choice = readInt("Enter your choice: ");
             switch (choice) {
-                case 1: return com.pluralsight.enums.PaymentMethod.CASH;
-                case 2: return com.pluralsight.enums.PaymentMethod.CARD;
+                case 1: return PaymentMethod.CASH;
+                case 2: return PaymentMethod.CARD;
                 default: System.out.println("Invalid choice. Please enter 1 or 2.");
             }
         }

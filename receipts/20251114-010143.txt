@@ -1,0 +1,37 @@
+Maf's Deli Receipt
+Customer: eyu
+Order ID: 1
+Placed: 2025-11-14 01:01:43
+--------------------------------
+Sandwich 1:
+8" WHEAT, Not toasted
+  Price: $7.00
+
+Sandwich 2:
+Signature: Philly Cheese Steak
+8" WHITE, Toasted
+  - Steak x1 => $2.00
+  - American x1 => $1.50
+  - Regular: Peppers, Mayo
+  Price: $10.50
+
+Sandwich 3:
+12" WRAP, Toasted
+  - Bacon x1 => $3.00
+  - Ham x1 => $3.00
+  - American x1 => $2.25
+  - Cheddar x1 => $2.25
+  - Regular: Lettuce, Peppers, Cucumbers, Mayo, Chipotle, Maf Sauce
+  Price: $19.00
+
+Drinks:
+  - Drink: Coca Cola (MEDIUM) => $2.50
+
+Chips:
+  - Chips: Plain => $1.50
+
+--------------------------------
+Total: $40.50
+Payment Method: Card
+--------------------------------
+Thank you for your order!

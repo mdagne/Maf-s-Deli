@@ -5,7 +5,7 @@ import com.pluralsight.enums.SandwichSize;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-// Provides static methods to get prices for bread, meat, cheese, drinks, and chips by size.
+// Provides static pricing methods for all menu items
 public final class PricingService {
     // Bread base prices
     public static final BigDecimal BREAD_4 = new BigDecimal("5.50");
@@ -42,6 +42,7 @@ public final class PricingService {
         // Prevent instantiation
     }
 
+    // Returns bread price for given sandwich size
     public static BigDecimal getBreadPrice(SandwichSize size) {
         switch (Objects.requireNonNull(size)) {
             case FOUR: return BREAD_4;
@@ -51,6 +52,7 @@ public final class PricingService {
         }
     }
 
+    // Returns meat price per portion for given sandwich size
     public static BigDecimal getMeatPrice(SandwichSize size) {
         switch (Objects.requireNonNull(size)) {
             case FOUR: return MEAT_4;
@@ -60,6 +62,7 @@ public final class PricingService {
         }
     }
 
+    // Returns extra meat price per portion for given sandwich size
     public static BigDecimal getExtraMeatPrice(SandwichSize size) {
         switch (Objects.requireNonNull(size)) {
             case FOUR: return EXTRA_MEAT_4;
@@ -69,6 +72,7 @@ public final class PricingService {
         }
     }
 
+    // Returns cheese price per portion for given sandwich size
     public static BigDecimal getCheesePrice(SandwichSize size) {
         switch (Objects.requireNonNull(size)) {
             case FOUR: return CHEESE_4;
@@ -78,6 +82,7 @@ public final class PricingService {
         }
     }
 
+    // Returns extra cheese price per portion for given sandwich size
     public static BigDecimal getExtraCheesePrice(SandwichSize size) {
         switch (Objects.requireNonNull(size)) {
             case FOUR: return EXTRA_CHEESE_4;

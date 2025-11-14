@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-// Represents free regular toppings that don't add to the sandwich price.
+// Vegetable extends abstract Topping class
 public class Vegetable extends Topping {
     private static final List<String> AVAILABLE_VEGETABLES = Collections.unmodifiableList(Arrays.asList(
         "Lettuce", "Peppers", "Onions", "Tomatoes", "Jalapeños", 
@@ -20,10 +20,10 @@ public class Vegetable extends Topping {
 
     @Override
     public BigDecimal getPriceBySize(SandwichSize size) {
-        // Vegetables are included in the price
         return BigDecimal.ZERO;
     }
 
+    // Returns list of all available vegetable options
     public static List<String> getAvailableVegetables() {
         return AVAILABLE_VEGETABLES;
     }

@@ -1,0 +1,26 @@
+Maf's Deli Receipt
+Customer: Guest
+Order ID: 2
+Placed: 2025-11-13 23:45:57
+--------------------------------
+Sandwich 1:
+Signature: BLT
+8" WHITE, Toasted
+  - Bacon x1 => $2.00
+  - Cheddar x1 => $1.50
+  - Regular: Lettuce, Tomato, Ranch
+  Price: $10.50
+
+Sandwich 2:
+4" WHITE, Toasted
+  - Steak x1 => $1.00
+    Extra Steak x1 => $0.50
+  - American x1 => $0.75
+  - Regular: Vinaigrette, Coleslaw
+  Price: $7.75
+
+--------------------------------
+Total: $18.25
+Payment Method: Cash
+--------------------------------
+Thank you for your order!

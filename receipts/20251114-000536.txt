@@ -1,0 +1,32 @@
+Maf's Deli Receipt
+Customer: Guest
+Order ID: 2
+Placed: 2025-11-14 00:05:36
+--------------------------------
+Sandwich 1:
+8" WRAP, Toasted
+  - Steak x1 => $2.00
+    Extra Steak x1 => $1.00
+  - American x1 => $1.50
+    Extra American x2 => $1.20
+  Price: $12.70
+
+Sandwich 2:
+Signature: BLT
+8" WHITE, Toasted
+  - Bacon x1 => $2.00
+  - Cheddar x1 => $1.50
+  - Regular: Lettuce, Tomato, Ranch
+  Price: $10.50
+
+Drinks:
+  - Drink: Pepsi (MEDIUM) => $2.50
+
+Chips:
+  - Chips: Sour Cream & Onion => $1.50
+
+--------------------------------
+Total: $27.20
+Payment Method: Cash
+--------------------------------
+Thank you for your order!

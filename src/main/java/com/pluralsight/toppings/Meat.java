@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-// Represents premium meat toppings with size-based pricing and extra meat charges.
+// Meat extends abstract Topping class
 public class Meat extends Topping {
     private static final List<String> AVAILABLE_MEATS = Collections.unmodifiableList(Arrays.asList(
         "Steak", "Ham", "Salami", "Roast Beef", "Chicken", "Bacon"
@@ -28,6 +28,7 @@ public class Meat extends Topping {
         return PricingService.getExtraMeatPrice(size);
     }
 
+    // Returns list of all available meat options
     public static List<String> getAvailableMeats() {
         return AVAILABLE_MEATS;
     }

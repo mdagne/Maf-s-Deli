@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-// Represents premium cheese toppings with size-based pricing and extra cheese charges.
+// Cheese extends abstract Topping class
 public class Cheese extends Topping {
     private static final List<String> AVAILABLE_CHEESES = Collections.unmodifiableList(Arrays.asList(
         "American", "Provolone", "Cheddar", "Swiss"
@@ -28,6 +28,7 @@ public class Cheese extends Topping {
         return PricingService.getExtraCheesePrice(size);
     }
 
+    // Returns list of all available cheese options
     public static List<String> getAvailableCheeses() {
         return AVAILABLE_CHEESES;
     }

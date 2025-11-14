@@ -6,6 +6,7 @@ import com.pluralsight.enums.SandwichSize;
 import com.pluralsight.services.OrderManager;
 import com.pluralsight.toppings.Cheese;
 import com.pluralsight.toppings.Meat;
+import com.pluralsight.toppings.Topping;
 import com.pluralsight.toppings.Vegetable;
 import com.pluralsight.toppings.Sauce;
 import com.pluralsight.utils.MenuUtils;
@@ -25,70 +26,60 @@ public class AddSandwichScreen {
 
     public void display() {
         System.out.println("\n=== Add Sandwich ===");
-
         // Select size
         SandwichSize size = MenuUtils.chooseSandwichSize();
-        
         // Select bread
         BreadType bread = MenuUtils.chooseBreadType();
-        
         // Create sandwich
         Sandwich sandwich = new Sandwich(size, bread);
-        
         // Select meats
         System.out.println("\n--- Select Meats ---");
         selectMeatsWithExtras(sandwich);
-        
         // Select cheeses
         System.out.println("\n--- Select Cheeses ---");
         selectCheesesWithExtras(sandwich);
-        
         // Select regular toppings (vegetables)
         System.out.println("\n--- Select Regular Toppings ---");
         List<String> selectedToppings = MenuUtils.chooseRegularToppings();
         selectedToppings.forEach(toppingName -> sandwich.addRegularTopping(new Vegetable(toppingName)));
-        
         // Select sauces
         System.out.println("\n--- Select Sauces ---");
-        addRegularToppings(sandwich, MenuUtils.chooseSauces());
-        
-        // Select sides (like au jus) - these are also sauces
-        System.out.println("\n--- Select Sides ---");
-        addRegularToppings(sandwich, MenuUtils.chooseSides());
-        
+        addSauces(sandwich, MenuUtils.chooseSauces());
+        // Select dipping sauces
+        System.out.println("\n--- Select Dipping Sauces ---");
+        addSauces(sandwich, MenuUtils.chooseSides());
         // Toasted?
         boolean toasted = MenuUtils.readYesNo("\nWould you like the sandwich toasted? (y/n): ");
         sandwich.setToasted(toasted);
-        
         // Add sandwich to order
         orderManager.addSandwich(sandwich);
         System.out.println("\nSandwich added successfully!");
         System.out.println("Sandwich price: $" + sandwich.getPrice().toPlainString());
     }
-    
+
     private void selectMeatsWithExtras(Sandwich sandwich) {
         selectPremiumToppingWithExtras(
             sandwich,
-            com.pluralsight.toppings.Meat.getAvailableMeats(),
+            Meat.getAvailableMeats(),
             "meat",
             name -> new Meat(name)
         );
     }
-    
+
     private void selectCheesesWithExtras(Sandwich sandwich) {
         selectPremiumToppingWithExtras(
             sandwich,
-            com.pluralsight.toppings.Cheese.getAvailableCheeses(),
+            Cheese.getAvailableCheeses(),
             "cheese",
             name -> new Cheese(name)
         );
     }
-    
+
     @FunctionalInterface
     private interface ToppingFactory {
-        com.pluralsight.toppings.Topping create(String name);
+        Topping create(String name);
     }
-    
+
     private void selectPremiumToppingWithExtras(Sandwich sandwich, List<String> availableItems, 
                                                   String itemType, ToppingFactory factory) {
         System.out.println("\nAvailable " + itemType + "s:");
@@ -96,7 +87,7 @@ public class AddSandwichScreen {
             System.out.println((i + 1) + ") " + availableItems.get(i));
         }
         System.out.println("0) No " + itemType);
-        
+
         Set<Integer> selectedIndices = new HashSet<>();
         while (true) {
             int choice = MenuUtils.readInt("Enter your choice (0 for no " + itemType + "): ");
@@ -119,8 +110,9 @@ public class AddSandwichScreen {
             }
         }
     }
-    
-    private void addRegularToppings(Sandwich sandwich, List<String> toppingNames) {
-        toppingNames.forEach(name -> sandwich.addRegularTopping(new Sauce(name)));
+
+    // Adds sauce toppings (regular or dipping) to sandwich
+    private void addSauces(Sandwich sandwich, List<String> sauceNames) {
+        sauceNames.forEach(name -> sandwich.addRegularTopping(new Sauce(name)));
     }
 }

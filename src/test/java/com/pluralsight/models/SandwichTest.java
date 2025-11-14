@@ -65,9 +65,40 @@ public class SandwichTest {
     
     @Test
     public void testPolymorphism() {
-        // Test that Sandwich implements Pricable interface
+        // Demonstrates polymorphism - Sandwich implements Pricable interface
         com.pluralsight.interfaces.Pricable pricable = sandwich;
         assertNotNull(pricable.getPrice());
         assertNotNull(pricable.toReceiptText());
+    }
+    
+    @Test
+    public void testInheritance() {
+        // Demonstrates inheritance - SignatureSandwich extends Sandwich
+        SignatureSandwich blt = SignatureSandwich.createBLT();
+        assertNotNull(blt);
+        assertEquals("BLT", blt.getSignatureName());
+        assertTrue(blt instanceof Sandwich);
+    }
+    
+    @Test
+    public void testMethodOverriding() {
+        // Demonstrates method overriding - SignatureSandwich overrides toReceiptText()
+        SignatureSandwich blt = SignatureSandwich.createBLT();
+        String receipt = blt.toReceiptText();
+        assertTrue(receipt.contains("Signature: BLT"));
+    }
+    
+    @Test
+    public void testInstanceof() {
+        // Demonstrates instanceof - checks if topping is Meat or Cheese
+        com.pluralsight.toppings.Meat meat = new com.pluralsight.toppings.Meat("Steak");
+        com.pluralsight.toppings.Cheese cheese = new com.pluralsight.toppings.Cheese("Cheddar");
+        com.pluralsight.toppings.Vegetable vegetable = new com.pluralsight.toppings.Vegetable("Lettuce");
+        
+        assertTrue(meat instanceof com.pluralsight.toppings.Topping);
+        assertTrue(cheese instanceof com.pluralsight.toppings.Topping);
+        assertTrue(vegetable instanceof com.pluralsight.toppings.Topping);
+        assertTrue(meat instanceof com.pluralsight.toppings.Meat);
+        assertTrue(cheese instanceof com.pluralsight.toppings.Cheese);
     }
 }

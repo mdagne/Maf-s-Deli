@@ -22,7 +22,6 @@ public class AddDrinkScreen {
             System.out.println("No drink added.");
             return;
         }
-        
         DrinkSize size = MenuUtils.chooseDrinkSize();
         
         Drink drink = new Drink(drinkFlavor, size);

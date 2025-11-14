@@ -34,11 +34,13 @@ public class OrderScreen extends UIScreen {
                 case 3 -> new AddDrinkScreen(orderManager).display();
                 case 4 -> new AddChipsScreen(orderManager).display();
                 case 5 -> {
+                    // Process checkout - if order is completed, return to home screen
                     new CheckoutScreen(orderManager).display();
                     Order updatedOrder = orderManager.getCurrentOrder();
                     if (updatedOrder.getSandwiches().isEmpty() 
                         && updatedOrder.getDrinks().isEmpty()
                         && updatedOrder.getChips().isEmpty()) {
+                        // Order was completed and reset, return to home
                         return;
                     }
                 }

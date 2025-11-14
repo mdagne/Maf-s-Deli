@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * JUnit test class for Order.
- * Tests aggregation, polymorphism with MenuItem interface, and stream usage.
+ * Tests aggregation, polymorphism with Pricable interface, and stream usage.
  */
 public class OrderTest {
     
