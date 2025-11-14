@@ -1,0 +1,17 @@
+DELI-cious Receipt
+Customer: tesfahun
+Order ID: b621939c-a149-405b-8e79-5466bc2e9b98
+Placed: 2025-11-13 16:59:25
+--------------------------------
+Sandwich 1:
+8" WHITE, Toasted
+  - Steak x1 => $2.00
+  - Swiss x1 => $1.50
+  - Regular: Lettuce, Peppers, Mayo, Ketchup
+  Price: $10.50
+
+--------------------------------
+Total: $10.50
+Payment Method: Card
+--------------------------------
+Thank you for your order!
