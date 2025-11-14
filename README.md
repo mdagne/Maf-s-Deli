@@ -135,7 +135,7 @@ Includes:
 HomeScreen, OrderScreen, AddSandwichScreen, AddDrinkScreen, AddChipsScreen, CheckoutScreen.
 
 Demonstrates abstraction + clean UI navigation.
-
+![homescreen.png](screenshot/homescreen.png)
 ---
 
 ## 🧾 Example Receipt
