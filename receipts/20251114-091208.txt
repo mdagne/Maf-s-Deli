@@ -1,0 +1,28 @@
+Maf's Deli Receipt
+Customer: john
+Order ID: 1
+Placed: 2025-11-14 09:12:08
+--------------------------------
+Sandwich 1:
+Signature: Philly Cheese Steak
+8" WHITE, Toasted
+  - Steak x1 => $2.00
+  - American x1 => $1.50
+  - Regular: Peppers, Mayo
+  Price: $10.50
+
+Sandwich 2:
+8" WHEAT, Toasted
+  - Bacon x1 => $2.00
+  - American x1 => $1.50
+  - Regular: Lettuce, Tomatoes, Pickles, Mayo, Chipotle, Maf Sauce
+  Price: $10.50
+
+Drinks:
+  - Drink: Dr. Pepper (SMALL) => $2.00
+
+--------------------------------
+Total: $23.00
+Payment Method: Cash
+--------------------------------
+Thank you for your order!

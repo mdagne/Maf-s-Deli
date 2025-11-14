@@ -57,7 +57,7 @@ src/
     ├── ui/
     └── utils/
 ```
-![uml.png](screenshot/uml.png)
+![uml_diagram.png](screenshot/uml_diagram.png)
 ---
 
 ## 🧱 Class-by-Class Breakdown
