@@ -4,6 +4,7 @@ import com.pluralsight.sides.Chips;
 import com.pluralsight.services.OrderManager;
 import com.pluralsight.utils.MenuUtils;
 
+// AddChipsScreen displays available chip types and adds the selected chips to the order.
 public class AddChipsScreen {
 
     private final OrderManager orderManager;

@@ -1,0 +1,24 @@
+Maf's Deli Receipt
+Customer: maf
+Order ID: 2
+Placed: 2025-11-13 19:27:54
+--------------------------------
+Sandwich 1:
+Signature: BLT
+8" WHITE, Toasted
+  - Bacon x1 => $2.00
+  - Cheddar x1 => $1.50
+  - Regular: Lettuce, Tomato, Ranch
+  Price: $10.50
+
+Drinks:
+  - Drink: Dr. Pepper (MEDIUM) => $2.50
+
+Chips:
+  - Chips: Sour Cream & Onion => $1.50
+
+--------------------------------
+Total: $14.50
+Payment Method: Cash
+--------------------------------
+Thank you for your order!

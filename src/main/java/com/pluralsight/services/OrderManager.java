@@ -6,8 +6,9 @@ import com.pluralsight.sides.Drink;
 import com.pluralsight.sides.Chips;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
-// OrderManager manages current order state and provides methods for UI screens to interact with orders.
+// Manages the current order, adds items, provides summaries, and handles checkout.
 public class OrderManager {
     private Order currentOrder;
 
@@ -45,34 +46,51 @@ public class OrderManager {
         currentOrder.addChips(chips);
     }
 
-    public void displayOrderSummary() {
-        boolean isEmpty = currentOrder.getSandwiches().isEmpty() 
-            && currentOrder.getDrinks().isEmpty() 
-            && currentOrder.getChips().isEmpty();
-            
-        if (isEmpty) {
-            System.out.println("\nYour order is empty.");
-            return;
+    public OrderSummary getOrderSummary() {
+        int sandwichCount = currentOrder.getSandwiches().size();
+        int drinkCount = currentOrder.getDrinks().size();
+        int chipsCount = currentOrder.getChips().size();
+        BigDecimal total = currentOrder.calculateSubtotal();
+        
+        return new OrderSummary(sandwichCount, drinkCount, chipsCount, total);
+    }
+    
+    public static class OrderSummary {
+        private final int sandwichCount;
+        private final int drinkCount;
+        private final int chipsCount;
+        private final java.math.BigDecimal total;
+        
+        public OrderSummary(int sandwichCount, int drinkCount, int chipsCount, java.math.BigDecimal total) {
+            this.sandwichCount = sandwichCount;
+            this.drinkCount = drinkCount;
+            this.chipsCount = chipsCount;
+            this.total = total;
         }
-
-        System.out.println("\n=== Order Summary ===");
-        System.out.println(currentOrder.buildReceiptText());
-        System.out.println("Total: $" + currentOrder.calculateSubtotal().toPlainString());
+        
+        public boolean isEmpty() {
+            return sandwichCount == 0 && drinkCount == 0 && chipsCount == 0;
+        }
+        
+        public int getSandwichCount() { return sandwichCount; }
+        public int getDrinkCount() { return drinkCount; }
+        public int getChipsCount() { return chipsCount; }
+        public java.math.BigDecimal getTotal() { return total; }
     }
 
-    public boolean checkout() {
+    public String checkout() {
         if (!currentOrder.isValid()) {
             System.out.println("Invalid order: If you have 0 sandwiches, you must add chips or a drink.");
-            return false;
+            return null;
         }
 
         try {
-            currentOrder.saveReceipt();
-            startNewOrder(); // Start a new order after checkout
-            return true;
+            String receiptPath = currentOrder.saveReceipt();
+            startNewOrder();
+            return receiptPath;
         } catch (IOException e) {
             System.err.println("Failed to save receipt: " + e.getMessage());
-            return false;
+            return null;
         }
     }
 

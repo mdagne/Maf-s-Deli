@@ -1,0 +1,17 @@
+Maf's Deli Receipt
+Customer: Guest
+Order ID: 2
+Placed: 2025-11-13 20:39:47
+--------------------------------
+Sandwich 1:
+4" WHITE, Toasted
+  - Steak x1 => $1.00
+  - American x1 => $0.75
+  - Regular: Chipotle, Coleslaw
+  Price: $7.25
+
+--------------------------------
+Total: $7.25
+Payment Method: Cash
+--------------------------------
+Thank you for your order!

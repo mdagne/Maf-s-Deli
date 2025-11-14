@@ -4,7 +4,7 @@ import com.pluralsight.models.Order;
 import com.pluralsight.services.OrderManager;
 import com.pluralsight.utils.MenuUtils;
 
-// OrderScreen extends UIScreen, demonstrating inheritance and polymorphism.
+// OrderScreen displays the order menu to add items, view summary, checkout, or cancel order.
 public class OrderScreen extends UIScreen {
 
     private final OrderManager orderManager;
@@ -30,9 +30,10 @@ public class OrderScreen extends UIScreen {
 
             switch (choice) {
                 case 1 -> new AddSandwichScreen(orderManager).display();
-                case 2 -> new AddDrinkScreen(orderManager).display();
-                case 3 -> new AddChipsScreen(orderManager).display();
-                case 4 -> {
+                case 2 -> new AddSignatureSandwichScreen(orderManager).display();
+                case 3 -> new AddDrinkScreen(orderManager).display();
+                case 4 -> new AddChipsScreen(orderManager).display();
+                case 5 -> {
                     new CheckoutScreen(orderManager).display();
                     Order updatedOrder = orderManager.getCurrentOrder();
                     if (updatedOrder.getSandwiches().isEmpty() 
@@ -53,24 +54,22 @@ public class OrderScreen extends UIScreen {
     
     private void displayMenuOptions() {
         System.out.println("1) Add Sandwich");
-        System.out.println("2) Add Drink");
-        System.out.println("3) Add Chips");
-        System.out.println("4) Checkout");
+        System.out.println("2) Add Signature Sandwich");
+        System.out.println("3) Add Drink");
+        System.out.println("4) Add Chips");
+        System.out.println("5) Checkout");
         System.out.println("0) Cancel Order");
     }
     
     private void displayOrderSummary() {
-        Order currentOrder = orderManager.getCurrentOrder();
-        int sandwichCount = currentOrder.getSandwiches().size();
-        int drinkCount = currentOrder.getDrinks().size();
-        int chipsCount = currentOrder.getChips().size();
+        OrderManager.OrderSummary summary = orderManager.getOrderSummary();
         
-        if (sandwichCount > 0 || drinkCount > 0 || chipsCount > 0) {
-            System.out.println("\nCurrent order: " + sandwichCount + " sandwich(es), " 
-                    + drinkCount + " drink(s), " + chipsCount + " chip(s)");
-            System.out.println("Current total: $" + currentOrder.calculateSubtotal().toPlainString());
-        } else {
+        if (summary.isEmpty()) {
             System.out.println("\nCurrent order is empty.");
+        } else {
+            System.out.println("\nCurrent order: " + summary.getSandwichCount() + " sandwich(es), " 
+                    + summary.getDrinkCount() + " drink(s), " + summary.getChipsCount() + " chip(s)");
+            System.out.println("Current total: $" + summary.getTotal().toPlainString());
         }
     }
 }

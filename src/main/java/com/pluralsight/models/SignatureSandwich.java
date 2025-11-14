@@ -7,7 +7,7 @@ import com.pluralsight.toppings.Cheese;
 import com.pluralsight.toppings.Vegetable;
 import com.pluralsight.toppings.Sauce;
 
-// SignatureSandwich represents a predefined sandwich template customers can customize (e.g., BLT, Philly Cheese Steak).
+// Creates predefined sandwiches with default toppings.
 public class SignatureSandwich extends Sandwich {
     
     private final String signatureName;
@@ -16,12 +16,10 @@ public class SignatureSandwich extends Sandwich {
         super(size, bread);
         this.signatureName = signatureName;
     }
-
     public String getSignatureName() {
         return signatureName;
     }
-
-    // Creates a BLT signature sandwich with default toppings (8" white bread, Bacon, Cheddar, Lettuce, Tomato, Ranch, Toasted).
+    // Creates a BLT signature sandwich with default toppings
     public static SignatureSandwich createBLT() {
         SignatureSandwich blt = new SignatureSandwich("BLT", SandwichSize.EIGHT, BreadType.WHITE);
         blt.addPremiumTopping(new Meat("Bacon"), 1, 0);
@@ -32,8 +30,7 @@ public class SignatureSandwich extends Sandwich {
         blt.setToasted(true);
         return blt;
     }
-
-    // Creates a Philly Cheese Steak signature sandwich with default toppings (8" white bread, Steak, American Cheese, Peppers, Mayo, Toasted).
+    // Creates a Philly Cheese Steak signature sandwich with default toppings
     public static SignatureSandwich createPhillyCheeseSteak() {
         SignatureSandwich philly = new SignatureSandwich("Philly Cheese Steak", SandwichSize.EIGHT, BreadType.WHITE);
         philly.addPremiumTopping(new Meat("Steak"), 1, 0);

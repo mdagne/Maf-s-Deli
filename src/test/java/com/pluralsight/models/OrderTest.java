@@ -84,7 +84,7 @@ public class OrderTest {
         
         String receipt = order.buildReceiptText();
         assertNotNull(receipt);
-        assertTrue(receipt.contains("DELI-cious Receipt"));
+        assertTrue(receipt.contains("Maf's Deli Receipt"));
     }
     
     @Test

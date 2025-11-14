@@ -3,6 +3,7 @@ package com.pluralsight;
 import com.pluralsight.services.OrderManager;
 import com.pluralsight.ui.HomeScreen;
 
+// Main is the entry point that creates OrderManager and displays the HomeScreen.
 public class Main {
     public static void main(String[] args) {
        

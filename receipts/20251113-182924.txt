@@ -1,0 +1,18 @@
+DELI-cious Receipt
+Customer: 
+Order ID: bcae302a-5cc2-46fd-9790-3b75de0baaf6
+Placed: 2025-11-13 18:29:24
+--------------------------------
+Sandwich 1:
+Signature: BLT
+8" WHITE, Toasted
+  - Bacon x1 => $2.00
+  - Cheddar x1 => $1.50
+  - Regular: Lettuce, Tomato, Ranch
+  Price: $10.50
+
+--------------------------------
+Total: $10.50
+Payment Method: Card
+--------------------------------
+Thank you for your order!

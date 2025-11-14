@@ -10,10 +10,13 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Stream;
 
-// Order aggregates sandwiches, drinks, and chips; newest entries are shown first using LinkedList.
+// Order aggregates sandwiches, drinks, and chips, calculates totals, and generates receipt text.
 public class Order {
-    private final UUID id = UUID.randomUUID();
+    private static int idCounter = 1;
+    private final int id = idCounter++;
     private final LocalDateTime placedAt = LocalDateTime.now();
     private final String customerName;
     private PaymentMethod paymentMethod;
@@ -21,13 +24,12 @@ public class Order {
     private final LinkedList<Drink> drinks = new LinkedList<>();
     private final LinkedList<Chips> chips = new LinkedList<>();
 
-    // Constructor that accepts customer name
     public Order(String customerName) {
         this.customerName = customerName;
-        this.paymentMethod = PaymentMethod.CASH; // Default payment method
+        this.paymentMethod = PaymentMethod.CASH;
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
@@ -81,35 +83,31 @@ public class Order {
     }
 
     public BigDecimal calculateSubtotal() {
-        // Using streams to calculate subtotal from all items
-        BigDecimal total = sandwiches.stream()
-                .map(Sandwich::getPrice)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
-        
-        total = total.add(drinks.stream()
-                .map(Drink::getPrice)
-                .reduce(BigDecimal.ZERO, BigDecimal::add));
-        
-        total = total.add(chips.stream()
-                .map(Chips::getPrice)
-                .reduce(BigDecimal.ZERO, BigDecimal::add));
+        BigDecimal total = Stream.concat(
+                Stream.concat(
+                    sandwiches.stream().map(Sandwich::getPrice),
+                    drinks.stream().map(Drink::getPrice)
+                ),
+                chips.stream().map(Chips::getPrice)
+            )
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
         
         return total.setScale(2, java.math.RoundingMode.HALF_UP);
     }
 
     public String buildReceiptText() {
         StringBuilder sb = new StringBuilder(512);
-        sb.append("DELI-cious Receipt\n");
+        sb.append("Maf's Deli Receipt\n");
         sb.append("Customer: ").append(customerName).append("\n");
-        sb.append("Order ID: ").append(id.toString()).append("\n");
+        sb.append("Order ID: ").append(id).append("\n");
         sb.append("Placed: ").append(placedAt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))).append("\n");
         sb.append("--------------------------------\n");
 
         // Format sandwiches using streams
-        int[] idx = {1};
+        AtomicInteger idx = new AtomicInteger(1);
         sandwiches.stream()
                 .forEach(s -> {
-                    sb.append("Sandwich ").append(idx[0]++).append(":\n");
+                    sb.append("Sandwich ").append(idx.getAndIncrement()).append(":\n");
                     sb.append(s.toReceiptText()).append("\n");
                 });
 

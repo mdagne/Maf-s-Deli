@@ -3,7 +3,7 @@ package com.pluralsight.ui;
 import com.pluralsight.services.OrderManager;
 import com.pluralsight.utils.MenuUtils;
 
-// HomeScreen extends UIScreen, demonstrating inheritance.
+// HomeScreen displays the main menu to start a new order or exit the application.
 public class HomeScreen extends UIScreen {
 
     private final OrderManager orderManager;
@@ -14,7 +14,7 @@ public class HomeScreen extends UIScreen {
 
     @Override
     protected void renderHeader() {
-        System.out.println("\n=== Welcome to DELI-cious ===");
+        System.out.println("\n=== Welcome to Maf's Deli ===");
     }
 
     @Override
@@ -27,11 +27,14 @@ public class HomeScreen extends UIScreen {
             switch (choice) {
                 case 1 -> {
                     String customerName = MenuUtils.readString("Enter customer name: ");
+                    if (customerName == null || customerName.trim().isEmpty()) {
+                        customerName = "Guest";
+                    }
                     orderManager.startNewOrder(customerName);
                     new OrderScreen(orderManager).display();
                 }
                 case 0 -> {
-                    System.out.println("Thank you for visiting DELI-cious!");
+                    System.out.println("Thank you for visiting Maf's Deli!");
                     return;
                 }
                 default -> System.out.println("Invalid choice. Try again.");

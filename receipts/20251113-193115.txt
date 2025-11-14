@@ -1,0 +1,13 @@
+Maf's Deli Receipt
+Customer: Guest
+Order ID: 2
+Placed: 2025-11-13 19:31:15
+--------------------------------
+Drinks:
+  - Drink: Dr. Pepper (LARGE) => $3.00
+
+--------------------------------
+Total: $3.00
+Payment Method: Cash
+--------------------------------
+Thank you for your order!

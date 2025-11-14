@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-// Saves receipts to receipts/ directory. Filename format: yyyyMMdd-HHmmss.txt
+// Saves receipt text to files in the receipts directory with timestamped filenames.
 public final class ReceiptService {
     private static final String RECEIPTS_DIR = "receipts";
 

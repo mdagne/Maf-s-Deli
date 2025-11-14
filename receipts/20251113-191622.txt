@@ -1,0 +1,15 @@
+DELI-cious Receipt
+Customer: maf
+Order ID: 2
+Placed: 2025-11-13 19:16:22
+--------------------------------
+Sandwich 1:
+4" WHEAT, Toasted
+  - American x1 => $0.75
+  Price: $6.25
+
+--------------------------------
+Total: $6.25
+Payment Method: Card
+--------------------------------
+Thank you for your order!

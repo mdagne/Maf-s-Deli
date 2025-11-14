@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+// Represents free regular toppings that don't add to the sandwich price.
 public class Vegetable extends Topping {
     private static final List<String> AVAILABLE_VEGETABLES = Collections.unmodifiableList(Arrays.asList(
         "Lettuce", "Peppers", "Onions", "Tomatoes", "Jalapeños", 

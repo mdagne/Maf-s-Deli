@@ -1,6 +1,6 @@
 package com.pluralsight.enums;
 
-// Enum representing payment methods
+//  payment options (Cash, Card) with display names
 public enum PaymentMethod {
     CASH("Cash"),
     CARD("Card");

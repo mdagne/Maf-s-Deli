@@ -1,0 +1,17 @@
+Maf's Deli Receipt
+Customer: we
+Order ID: 2
+Placed: 2025-11-13 19:49:27
+--------------------------------
+Sandwich 1:
+4" WHITE, Toasted
+  - Steak x1 => $1.00
+  - American x1 => $0.75
+  - Provolone x1 => $0.75
+  Price: $8.00
+
+--------------------------------
+Total: $8.00
+Payment Method: Card
+--------------------------------
+Thank you for your order!

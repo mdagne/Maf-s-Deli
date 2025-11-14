@@ -12,6 +12,7 @@ import com.pluralsight.sides.SauceSide;
 
 import java.util.*;
 
+// MenuUtils provides static methods for reading user input and displaying menu choices for all order items.
 public class MenuUtils {
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -102,16 +103,16 @@ public class MenuUtils {
         for (int i = 0; i < options.size(); i++) {
             System.out.println((i + 1) + ") " + options.get(i));
         }
-        System.out.println("0) Done selecting " + itemType + "s");
+        System.out.println("0) No " + itemType);
         
         Set<Integer> selectedIndices = new HashSet<>();
         while (true) {
-            int choice = readInt("Enter your choice (0 to finish): ");
+            int choice = readInt("Enter your choice (0 for no " + itemType + "): ");
             if (choice == 0) {
                 break;
             }
             if (choice < 1 || choice > options.size()) {
-                System.out.println("Invalid choice. Please enter a number between 1 and " + options.size() + ", or 0 to finish.");
+                System.out.println("Invalid choice. Please enter a number between 1 and " + options.size() + ", or 0 for no " + itemType + ".");
                 continue;
             }
             int index = choice - 1;
@@ -169,38 +170,19 @@ public class MenuUtils {
         for (int i = 0; i < drinks.size(); i++) {
             System.out.println((i + 1) + ") " + drinks.get(i));
         }
+        System.out.println("0) Skip/No drink");
         while (true) {
-            int choice = readInt("Enter your choice: ");
+            int choice = readInt("Enter your choice (0 to skip): ");
+            if (choice == 0) {
+                return null;
+            }
             if (choice >= 1 && choice <= drinks.size()) {
                 return drinks.get(choice - 1);
             }
-            System.out.println("Invalid choice. Please enter a number between 1 and " + drinks.size() + ".");
+            System.out.println("Invalid choice. Please enter a number between 1 and " + drinks.size() + ", or 0 to skip.");
         }
     }
 
-    public static List<String> getDrinks() {
-        return Drink.getAvailableDrinks();
-    }
-
-    public static List<String> getMeats() {
-        return Meat.getAvailableMeats();
-    }
-
-    public static List<String> getCheeses() {
-        return Cheese.getAvailableCheeses();
-    }
-
-    public static List<String> getRegularToppings() {
-        return Vegetable.getAvailableVegetables();
-    }
-
-    public static List<String> getSauces() {
-        return Sauce.getAvailableSauces();
-    }
-
-    public static List<String> getSides() {
-        return SauceSide.getAvailableSauceSides();
-    }
 
     public static com.pluralsight.enums.PaymentMethod choosePaymentMethod() {
         System.out.println("\nSelect payment method:");

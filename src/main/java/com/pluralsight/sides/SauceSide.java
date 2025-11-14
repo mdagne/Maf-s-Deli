@@ -8,10 +8,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-// SauceSide represents a sauce sold separately as a side item (different from sandwich toppings).
+// Represents free side sauces that can be added to orders.
 public class SauceSide implements Pricable {
     private static final List<String> AVAILABLE_SAUCE_SIDES = Collections.unmodifiableList(Arrays.asList(
-        "Au Jus"
+        "Au Jus",
+        "Coleslaw"
     ));
 
     private final String name;

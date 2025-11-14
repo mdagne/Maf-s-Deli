@@ -1,0 +1,18 @@
+Maf's Deli Receipt
+Customer: ert
+Order ID: 4
+Placed: 2025-11-13 19:34:31
+--------------------------------
+Sandwich 1:
+4" WHITE, Toasted
+  - Steak x1 => $1.00
+    Extra Steak x2 => $1.00
+  - American x1 => $0.75
+  - Regular: Lettuce, Mayo
+  Price: $8.25
+
+--------------------------------
+Total: $8.25
+Payment Method: Card
+--------------------------------
+Thank you for your order!

@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+// Represents premium meat toppings with size-based pricing and extra meat charges.
 public class Meat extends Topping {
     private static final List<String> AVAILABLE_MEATS = Collections.unmodifiableList(Arrays.asList(
         "Steak", "Ham", "Salami", "Roast Beef", "Chicken", "Bacon"
@@ -20,6 +21,11 @@ public class Meat extends Topping {
     @Override
     public BigDecimal getPriceBySize(SandwichSize size) {
         return PricingService.getMeatPrice(size);
+    }
+    
+    @Override
+    public BigDecimal getExtraPrice(SandwichSize size) {
+        return PricingService.getExtraMeatPrice(size);
     }
 
     public static List<String> getAvailableMeats() {

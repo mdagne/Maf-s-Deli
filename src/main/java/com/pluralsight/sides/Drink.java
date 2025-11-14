@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+// Represents a beverage with flavor and size, calculating price based on size.
 public class Drink implements Pricable {
     private static final List<String> AVAILABLE_DRINKS = Collections.unmodifiableList(Arrays.asList(
         "Coca Cola", "Pepsi", "Sprite", "Dr. Pepper", "Fanta", 

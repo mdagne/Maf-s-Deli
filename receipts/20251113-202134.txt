@@ -1,0 +1,23 @@
+Maf's Deli Receipt
+Customer: Guest
+Order ID: cd5b4456-fca0-4eea-b321-db5fa45bdc16
+Placed: 2025-11-13 20:21:34
+--------------------------------
+Sandwich 1:
+Signature: Philly Cheese Steak
+8" WHITE, Toasted
+  - Steak x1 => $2.00
+  - American x1 => $1.50
+  - Regular: Peppers, Mayo
+  Price: $10.50
+
+Sandwich 2:
+8" WRAP, Toasted
+  - Regular: Peppers, Coleslaw
+  Price: $7.00
+
+--------------------------------
+Total: $17.50
+Payment Method: Card
+--------------------------------
+Thank you for your order!

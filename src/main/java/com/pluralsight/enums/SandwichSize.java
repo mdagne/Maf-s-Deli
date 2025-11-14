@@ -1,5 +1,6 @@
 package com.pluralsight.enums;
 
+// sandwich sizes options
 public enum SandwichSize {
     FOUR, EIGHT, TWELVE;
 

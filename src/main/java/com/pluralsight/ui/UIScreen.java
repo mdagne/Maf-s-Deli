@@ -1,6 +1,6 @@
 package com.pluralsight.ui;
 
-// Abstract base class for all UI screens implementing the Template Method pattern.
+// UIScreen defines the template method pattern for rendering header, content, and footer.
 public abstract class UIScreen {
     
     // Template method that defines the algorithm structure

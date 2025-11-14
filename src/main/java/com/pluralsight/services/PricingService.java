@@ -5,7 +5,7 @@ import com.pluralsight.enums.SandwichSize;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-// Centralized prices as constants; consider loading from properties or JSON for improvements.
+// Provides static methods to get prices for bread, meat, cheese, drinks, and chips by size.
 public final class PricingService {
     // Bread base prices
     public static final BigDecimal BREAD_4 = new BigDecimal("5.50");
